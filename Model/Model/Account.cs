@@ -17,6 +17,6 @@ namespace Model
         public bool IsCanLogin { get; set; }
         public bool IsAdmin { get; set; }
         public int TeamId { get; set; }
-        public ICollection<WhRole> WhRoles { get; set; }    
+        public virtual  ICollection<WhRole> WhRoles { get; set; }    
     }
 }

@@ -30,6 +30,7 @@ namespace WorkHour.Models
        
         public DbSet<Permission> Permissions { get; set; } 
 
+        public DbSet<WhRole> WhRoles { get; set; } 
 
     }
 }

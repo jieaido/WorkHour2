@@ -134,10 +134,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MembersController.cs" />
-    <Compile Include="Controllers\PermissionController.cs" />
-    <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\PermissionsController.cs" />
     <Compile Include="Controllers\StationsController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
+    <Compile Include="Controllers\WhRolesController.cs" />
     <Compile Include="Controllers\WorkSetsController.cs" />
     <Compile Include="Controllers\WorkTimesController.cs" />
     <Compile Include="DAL\AccountDal.cs" />
@@ -344,6 +344,16 @@
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Members\Login.cshtml" />
     <Content Include="Views\Members\register.cshtml" />
+    <Content Include="Views\Permissions\Create.cshtml" />
+    <Content Include="Views\Permissions\Delete.cshtml" />
+    <Content Include="Views\Permissions\Details.cshtml" />
+    <Content Include="Views\Permissions\Edit.cshtml" />
+    <Content Include="Views\Permissions\Index.cshtml" />
+    <Content Include="Views\WhRoles\Create.cshtml" />
+    <Content Include="Views\WhRoles\Delete.cshtml" />
+    <Content Include="Views\WhRoles\Details.cshtml" />
+    <Content Include="Views\WhRoles\Edit.cshtml" />
+    <Content Include="Views\WhRoles\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -351,8 +361,6 @@
     <Folder Include="Scripts\EasyUI\plugins\" />
     <Folder Include="Scripts\EasyUI\src\" />
     <Folder Include="Scripts\EasyUI\themes\" />
-    <Folder Include="Views\Permission\" />
-    <Folder Include="Views\Roles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
