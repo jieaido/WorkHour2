@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Model.WorkTime>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Station.StationName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MemberID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkProgram)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkTimeValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubMemberID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isDel)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Station.StationName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MemberID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkProgram)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkTimeValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubMemberID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isDel)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.WorkTimeID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.WorkTimeID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.WorkTimeID })
+        </td>
+    </tr>
+}
+
+</table>

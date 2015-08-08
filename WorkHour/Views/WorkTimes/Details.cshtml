@@ -1,0 +1,98 @@
+﻿@model Model.WorkTime
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WorkTime</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Station.StationName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Station.StationName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MemberID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MemberID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EndTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkProgram)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkProgram)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkTimeValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkTimeValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubMemberID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubMemberID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isDel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isDel)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.WorkTimeID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,99 @@
+﻿@model Model.Account
+
+@{
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Scripts/FlatUI/css/flat-ui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/FlatUI/js/flat-ui.js"></script>
+    <title>Index</title>
+</head>
+<body>
+    @*@using (Html.BeginForm()) 
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="form-horizontal">
+            <h4>Account</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.AccountName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AccountName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AccountName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                @Html.LabelFor(model => model.AccountPwd, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.AccountPwd, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AccountPwd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }*@
+    <div class="login">
+        
+        <div class="login-screen">
+            <div class="login-icon">
+                
+                <img src="~/Scripts/dist/img/icons/png/Map.png" alt="Welcome to Mail App" />
+                <h4>Welcome to <small>Mail App</small></h4>
+            </div>
+               
+            <div class="login-form">
+                @using (Html.BeginForm())
+                {//todo 自行验证
+                    
+                    
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <input type="text" name="accountname" data-val="true" data-val-required="MemberName 字段是必需的。" class="form-control login-field" value="" placeholder="Enter your name" id="login-name" />
+                        <!-- todo
+                            这就是自行验证.我真是天才 
+                            -->
+                    
+
+
+                        @Html.ValidationMessageFor(model => model.AccountName, "", new { @class = "text-danger" })
+                        <span class="field-validation-valid text-danger" data-valmsg-for="accountname" data-valmsg-replace="true"></span>
+                        <label class="login-field-icon fui-user" for="login-name"></label>
+                       
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password"  name="accountpwd" class="form-control login-field" value="" placeholder="Password" id="login-pass" />
+                        <label class="login-field-icon fui-lock" for="login-pass"></label>
+                    </div>
+
+
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="登陆" />
+                }
+            </div>
+        </div>
+        
+    </div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+
+</body>
+</html>
