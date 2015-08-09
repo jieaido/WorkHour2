@@ -26,7 +26,7 @@ namespace WorkHour.Controllers
         public ActionResult Login(string mname,string mpwd)
         {
 
-
+            Session["account"]= db2.Whdb.Accounts.FirstOrDefault();
             return Content("OK");
         }
         public ActionResult Index()

@@ -128,6 +128,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="code\Guolv.cs" />
     <Compile Include="code\WHinit.cs" />
     <Compile Include="code\yonghu.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Controllers\PermissionsController.cs" />
     <Compile Include="Controllers\StationsController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
+    <Compile Include="Controllers\testController.cs" />
     <Compile Include="Controllers\WhRolesController.cs" />
     <Compile Include="Controllers\WorkSetsController.cs" />
     <Compile Include="Controllers\WorkTimesController.cs" />
@@ -361,6 +363,7 @@
     <Folder Include="Scripts\EasyUI\plugins\" />
     <Folder Include="Scripts\EasyUI\src\" />
     <Folder Include="Scripts\EasyUI\themes\" />
+    <Folder Include="Views\test\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

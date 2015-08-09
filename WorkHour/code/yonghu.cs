@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace WorkHour.code
 {
@@ -11,8 +12,10 @@ namespace WorkHour.code
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
+            
             return base.AuthorizeCore(httpContext);
         }
+            
 
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
@@ -26,5 +29,4 @@ namespace WorkHour.code
             base.OnAuthorization(filterContext);
         }
     }
-    
 }
