@@ -1,0 +1,58 @@
+﻿@model Model.Account
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Account</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccountPwd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccountPwd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsCanLogin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsCanLogin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAdmin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAdmin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TeamId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeamId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Accountid }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
