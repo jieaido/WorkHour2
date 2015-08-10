@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Model;
+using WorkHour.code;
 using WorkHour.Models;
 
 namespace WorkHour.Controllers
@@ -40,6 +41,7 @@ namespace WorkHour.Controllers
         // GET: Stations/Create
         public ActionResult Create()
         {
+            var ss = WhUser.Getcurrentuser();
             ViewBag.TeamID = new SelectList(db.Teams, "TeamID", "TeamName");
             return View();
         }

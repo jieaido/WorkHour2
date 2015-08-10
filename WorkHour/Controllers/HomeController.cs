@@ -9,7 +9,7 @@ namespace WorkHour.Controllers
 {
     public class HomeController : Controller
     {
-        [yonghu]//用户名称过滤
+       
         public ActionResult Index()
         {
             

@@ -9,10 +9,16 @@ namespace Model.DAL
 {
     public  class AccountDal
     {
-        private readonly WHDB _db=new WHDB();
+       
+        private WHDBcontent db;
+
+        public AccountDal(WHDBcontent _db)
+        {
+            db = _db;
+        }
         public Account ValiValidationAccount(Account account)
         {
-            var s= _db.Accounts.FirstOrDefault(x => x.AccountName == account.AccountName && x.AccountPwd == account.AccountPwd);
+            var s= db.Whdb.Accounts.FirstOrDefault(x => x.AccountName == account.AccountName && x.AccountPwd == account.AccountPwd);
             if (s==null)
             {
                 return null;
@@ -20,6 +26,16 @@ namespace Model.DAL
 
             return s;
         }
-        
+
+        public Account Register(Account account)
+        {
+            var s = db.Whdb.Accounts.Add(account);
+            if (db.Whdb.SaveChanges() > 0)
+            {
+                return s;
+            }
+            
+            return null;
+        }
     }
 }

@@ -132,6 +132,7 @@
     <Compile Include="Areas\admin\Controllers\AccountsController.cs" />
     <Compile Include="Areas\admin\Controllers\adminController.cs" />
     <Compile Include="code\Guolv.cs" />
+    <Compile Include="code\whUser.cs" />
     <Compile Include="code\WHinit.cs" />
     <Compile Include="code\yonghu.cs" />
     <Compile Include="Controllers\AccountController.cs" />

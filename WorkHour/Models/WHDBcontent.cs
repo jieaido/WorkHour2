@@ -7,16 +7,20 @@ using WorkHour.DAL;
 
 namespace WorkHour.Models
 {
-    public class WHDBcontent
+    public class WHDBcontent:IDisposable
     {
         public WHDBcontent ()
         {
             Whdb=new WHDB();
-            AccountDal=new AccountDal();
+            AccountDal=new AccountDal(this);
             MemberDal=new MemberDal(this);
         }
         public WHDB Whdb { get; private set; }
         public AccountDal AccountDal { get; private set; }
         public MemberDal MemberDal { get; private set; }
+        public void Dispose()
+        {
+            Whdb.Dispose();
+        }
     }
 }

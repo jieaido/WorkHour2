@@ -7,14 +7,15 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Model;
+using WorkHour.code;
 using WorkHour.Models;
 
 namespace WorkHour.Controllers
 {
     public class MembersController : Controller
     {
-        private WHDB db = new WHDB();
-        private WHDBcontent db2=new WHDBcontent();
+        private WHDB _db = new WHDB();
+        private WHDBcontent _db2=new WHDBcontent();
         // GET: Members
 
         public ActionResult Login()
@@ -25,13 +26,17 @@ namespace WorkHour.Controllers
         [HttpPost]
         public ActionResult Login(string mname,string mpwd)
         {
+            //todo
+           //这个回来要集中做登录处理
 
-            Session["account"]= db2.Whdb.Accounts.FirstOrDefault();
-            return Content("OK");
+            WhUser.Getcurrentuser().SetValue(_db2.Whdb.Accounts.FirstOrDefault());
+                
+            Session["account"]= _db2.Whdb.Accounts.FirstOrDefault();
+            return RedirectToAction("Index", "Home");
         }
         public ActionResult Index()
         {
-            var members = db.Members.Include(m => m.Team);
+            var members = _db.Members.Include(m => m.Team);
             return View(members.ToList());
         }
 
@@ -42,7 +47,7 @@ namespace WorkHour.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member member = db.Members.Find(id);
+            Member member = _db.Members.Find(id);
             if (member == null)
             {
                 return HttpNotFound();
@@ -53,7 +58,8 @@ namespace WorkHour.Controllers
         // GET: Members/Create
         public ActionResult Create()
         {
-            ViewBag.TeamID = new SelectList(db.Teams, "TeamID", "TeamName");
+            int id = WhUser.Getcurrentuser().TeamId;
+            ViewBag.TeamID = new SelectList(_db.Teams.Where(x=>x.TeamID==id), "TeamID", "TeamName");
             return View();
         }
 
@@ -66,12 +72,12 @@ namespace WorkHour.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Members.Add(member);
-                db.SaveChanges();
+                _db.Members.Add(member);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.TeamID = new SelectList(db.Teams, "TeamID", "TeamName", member.TeamID);
+            ViewBag.TeamID = new SelectList(_db.Teams, "TeamID", "TeamName", member.TeamID);
             return View(member);
         }
 
@@ -82,12 +88,12 @@ namespace WorkHour.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member member = db.Members.Find(id);
+            Member member = _db.Members.Find(id);
             if (member == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.TeamID = new SelectList(db.Teams, "TeamID", "TeamName", member.TeamID);
+            ViewBag.TeamID = new SelectList(_db.Teams, "TeamID", "TeamName", member.TeamID);
             return View(member);
         }
 
@@ -100,11 +106,11 @@ namespace WorkHour.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(member).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(member).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.TeamID = new SelectList(db.Teams, "TeamID", "TeamName", member.TeamID);
+            ViewBag.TeamID = new SelectList(_db.Teams, "TeamID", "TeamName", member.TeamID);
             return View(member);
         }
 
@@ -115,7 +121,7 @@ namespace WorkHour.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Member member = db.Members.Find(id);
+            Member member = _db.Members.Find(id);
             if (member == null)
             {
                 return HttpNotFound();
@@ -128,36 +134,36 @@ namespace WorkHour.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Member member = db.Members.Find(id);
-            db.Members.Remove(member);
-            db.SaveChanges();
+            Member member = _db.Members.Find(id);
+            _db.Members.Remove(member);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
 
-        public ActionResult register()
+        public ActionResult Register()
         {
-            var s = db.Teams.ToList();
+            var s = _db.Teams.ToList();
              var sl=new SelectList(s, "TeamID", "TeamName");
             ViewBag.selectlist = sl;
             return View();
         }
 
         [HttpPost]
-        public ActionResult register(string mname,string mpwd,int teamid)
+        public ActionResult Register(string mname,string mpwd,int teamid)
         {
             //todo
-
+         
             //增加注册画面
-            Member member=new Member()
+            Account account = new Account()
             {
-                MemberName = mname,
-               // MemberPwd = mpwd,
-                
+                AccountName = mname,
+                AccountPwd = mpwd,
+                TeamId = teamid,
+                IsAdmin = false
             };
-            member.TeamID = teamid;
-            member.Team = db2.Whdb.Teams.FirstOrDefault(x => x.TeamID == teamid);
-            if (db2.MemberDal.Register(member)!=null)
+        
+            if (_db2.AccountDal.Register(account)!=null)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -167,7 +173,7 @@ namespace WorkHour.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _db.Dispose();
             }
             base.Dispose(disposing);
         }
