@@ -1,0 +1,60 @@
+﻿
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+
+
+@{
+    ViewBag.Title = "table";
+}
+
+<script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript">
+    $(function() {
+        init();
+    });
+
+    function init() {
+        $("#tt").datagrid({
+            pagination: 'true',
+            rownumbers: 'true',
+            url: '@Url.Action("Inittable", "WorkTimes")',
+            title: '这是一个测试的数据表',
+            pageNumber: 1,
+            pageSize: 10,
+            pagePosition: 'top',
+            singleSelect: true,
+            width:1280,
+            columns: [
+                [
+                    {
+                        field: 'TeamID',
+                        title: '用户名'
+
+                    },
+                    {
+                        field: 'TeamName',
+                        title: '描述',
+                        width: 300,
+                        editor: {
+                            type: 'text'
+                        }
+                    }
+                ]
+            ]
+
+
+        });
+    }
+    
+
+</script>
+<h2>table</h2>
+
+
+<div id="tt">
+    
+</div>
+
+<link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
+<link href="~/Scripts/EasyUI/themes/bootstrap/easyui.css" rel="stylesheet" />

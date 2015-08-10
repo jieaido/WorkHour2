@@ -121,6 +121,17 @@ namespace WorkHour.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult InitTable()
+        {
+            var s = db.Teams.ToList();
+
+            return Json(s);
+        }
+
+        public ActionResult table()
+        {
+            return View();
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
