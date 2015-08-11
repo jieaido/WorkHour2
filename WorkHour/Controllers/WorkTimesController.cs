@@ -16,116 +16,157 @@ namespace WorkHour.Controllers
         private WHDB db = new WHDB();
 
         // GET: WorkTimes
-        public ActionResult Index()
-        {
-            var workTimes = db.WorkTimes.Include(w => w.Station);
-            return View(workTimes.ToList());
-        }
+        //public ActionResult Index()
+        //{
+        //    var workTimes = db.WorkTimes.Include(w => w.Station);
+        //    return View(workTimes.ToList());
+        //}
 
-        // GET: WorkTimes/Details/5
-        public ActionResult Details(int? id)
+        //// GET: WorkTimes/Details/5
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    WorkTime workTime = db.WorkTimes.Find(id);
+        //    if (workTime == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(workTime);
+        //}
+
+        //// GET: WorkTimes/Create
+        //public ActionResult Create()
+        //{
+        //    ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName");
+        //    return View();
+        //}
+
+        //// POST: WorkTimes/Create
+        //// 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
+        //// 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "WorkTimeID,MemberID,StationID,StartTime,EndTime,WorkProgram,Remarks,WorkTimeValue,SubTime,SubMemberID,isDel")] WorkTime workTime)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.WorkTimes.Add(workTime);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName", workTime.StationID);
+        //    return View(workTime);
+        //}
+
+        //// GET: WorkTimes/Edit/5
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    WorkTime workTime = db.WorkTimes.Find(id);
+        //    if (workTime == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName", workTime.StationID);
+        //    return View(workTime);
+        //}
+
+        //// POST: WorkTimes/Edit/5
+        //// 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
+        //// 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "WorkTimeID,MemberID,StationID,StartTime,EndTime,WorkProgram,Remarks,WorkTimeValue,SubTime,SubMemberID,isDel")] WorkTime workTime)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(workTime).State = EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName", workTime.StationID);
+        //    return View(workTime);
+        //}
+
+        //// GET: WorkTimes/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    WorkTime workTime = db.WorkTimes.Find(id);
+        //    if (workTime == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(workTime);
+        //}
+
+        //// POST: WorkTimes/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    WorkTime workTime = db.WorkTimes.Find(id);
+        //    db.WorkTimes.Remove(workTime);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+        public ActionResult InitTable(int rows,int page)
         {
-            if (id == null)
+
+            //     public virtual IQueryable<T> Pages<Tkey>(int pageSize, int pageIndex, out int Count, Func<T, bool> wherelambda,
+            //    Func<T, Tkey> orderlambda)
+            //{
+            //    Count = Oadb.Set<T>().Where(wherelambda).Count();
+            //    return
+            //        Oadb.Set<T>().Where(wherelambda)
+            //            .Take(pageSize)
+            //            .Skip((pageIndex - 1) * pageIndex)
+            //            .OrderBy(orderlambda)
+            //            .AsQueryable();
+            //上面那段话可以运行,因为Where(wherelambda)返回的是IEnumerable,不知道为啥.todo
+
+            //todo 回来再查
+
+            var s = db.Set<WorkTime>().
+                            Where(x => x.WorkTimeID > 0).
+                            Take(rows).
+                            OrderBy(x => x.WorkTimeID).
+                            Skip((page - 1) * rows).ToList();
+            //  .AsQueryable()不行,tolist行
+            //.AsQueryable()会报1:wt.StartTime.ToShortDateString() 不能在linq中使用.2:orderby要在skip前面
+           
+            
+            var count = db.WorkTimes.ToList().Count;
+
+
+            var result = new
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            WorkTime workTime = db.WorkTimes.Find(id);
-            if (workTime == null)
-            {
-                return HttpNotFound();
-            }
-            return View(workTime);
-        }
+                count,
+                rows = (from wt in s
+                        select
+                        new {
+                          wt.Station.StationName,
+                          ToShortDateString = wt.StartTime.ToShortDateString() ,
+                         wt.EndTime,
+                          wt.WorkProgram,
+                          wt.Member.MemberName,
+                          wt.WorkTimeValue,
+                      }).ToList()
+             }
+            ;
 
-        // GET: WorkTimes/Create
-        public ActionResult Create()
-        {
-            ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName");
-            return View();
-        }
-
-        // POST: WorkTimes/Create
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
-        // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "WorkTimeID,MemberID,StationID,StartTime,EndTime,WorkProgram,Remarks,WorkTimeValue,SubTime,SubMemberID,isDel")] WorkTime workTime)
-        {
-            if (ModelState.IsValid)
-            {
-                db.WorkTimes.Add(workTime);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName", workTime.StationID);
-            return View(workTime);
-        }
-
-        // GET: WorkTimes/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            WorkTime workTime = db.WorkTimes.Find(id);
-            if (workTime == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName", workTime.StationID);
-            return View(workTime);
-        }
-
-        // POST: WorkTimes/Edit/5
-        // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
-        // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "WorkTimeID,MemberID,StationID,StartTime,EndTime,WorkProgram,Remarks,WorkTimeValue,SubTime,SubMemberID,isDel")] WorkTime workTime)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(workTime).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName", workTime.StationID);
-            return View(workTime);
-        }
-
-        // GET: WorkTimes/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            WorkTime workTime = db.WorkTimes.Find(id);
-            if (workTime == null)
-            {
-                return HttpNotFound();
-            }
-            return View(workTime);
-        }
-
-        // POST: WorkTimes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            WorkTime workTime = db.WorkTimes.Find(id);
-            db.WorkTimes.Remove(workTime);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        public ActionResult InitTable()
-        {
-            var s = db.Teams.ToList();
-
-            return Json(s);
+            return Json(result);
         }
 
         public ActionResult table()
