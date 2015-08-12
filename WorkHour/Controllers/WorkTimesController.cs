@@ -39,11 +39,11 @@ namespace WorkHour.Controllers
         //}
 
         //// GET: WorkTimes/Create
-        //public ActionResult Create()
-        //{
-        //    ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName");
-        //    return View();
-        //}
+        public ActionResult Create()
+        {
+            ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName");
+            return View();
+        }
 
         //// POST: WorkTimes/Create
         //// 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 

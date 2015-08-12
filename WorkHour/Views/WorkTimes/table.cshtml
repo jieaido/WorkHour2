@@ -77,18 +77,21 @@
                 //        '<p>Status: ' + rowData.status + '</p>' +
                 //        '</td>' +
                 //        '</tr></table>';
-                return '<div id="ddv-' + rowIndex + '" style="padding:5px 0"> 试试</div>';
+                return '<div class="ddv" ></div>';
             },
-            @*onExpandRow: function(index, row) {
+           onExpandRow: function(index, row) {
                 var ddv = $(this).datagrid('getRowDetail', index).find('div.ddv');
                 ddv.panel({
-                    border: false,
-                    cache: true,
-                    href: '@Url.Action("Inittable", "WorkTimes")',    
+                    
+                    border: true,
+                    cache: false,
+                    width: 800,
+                    height: 400,
+                    href:'@Url.Action("Create","WorkTimes")',
                     onLoad:function(){    
                         $('#tt').datagrid('fixDetailRowHeight',index);    
-                        $('#tt').datagrid('selectRow',index);    
-                        $('#tt').datagrid('getRowDetail',index).find('form').form('load',row);    
+                       // $('#tt').datagrid('selectRow',index);    
+                        //$('#tt').datagrid('getRowDetail',index).find('form').form('load',row);    
                     }    
                 });    
                 $('#tt').datagrid('fixDetailRowHeight',index);    
@@ -98,7 +101,7 @@
             onDblClickRow: function (index, row) {
                 $('#tt').datagrid('expandRow', index);
                 
-            }*@
+            }
 
 
         });
