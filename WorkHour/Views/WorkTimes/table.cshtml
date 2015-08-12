@@ -12,6 +12,7 @@
 <script type="text/javascript">
     $(function() {
         init();
+
     });
 
     function init() {
@@ -24,7 +25,7 @@
             pageSize: 10,
             pagePosition: 'top',
             singleSelect: true,
-            width:1280,
+            width: 1280,
             columns: [
                 [
                     {
@@ -41,32 +42,63 @@
                             type: 'text'
                         }
                     },
-                      {
-                          field: 'endtime',
-                          title: '结束时间',
-                          width: 300,
+                    {
+                        field: 'endtime',
+                        title: '结束时间',
+                        width: 300,
 
-                      },
-                       {
-                           field: 'WorkProgram',
-                           title: '工作内容',
-                           width: 300,
+                    },
+                    {
+                        field: 'WorkProgram',
+                        title: '工作内容',
+                        width: 300,
 
-                       },
-                        {
-                            field: 'MemberName',
-                            title: '成员',
-                            width: 300,
+                    },
+                    {
+                        field: 'MemberName',
+                        title: '成员',
+                        width: 300,
 
-                        },
-                         {
-                             field: 'WorkTimeValue',
-                             title: '工时',
-                             width: 300,
+                    },
+                    {
+                        field: 'WorkTimeValue',
+                        title: '工时',
+                        width: 300,
 
-                         },
+                    },
                 ]
-            ]
+            ],
+            view: detailview,
+            detailFormatter: function(rowIndex, rowData) {
+                //return '<table><tr>' +
+                //        '<td rowspan=2 style="border:0"><img src="images/' + rowData.itemid + '.png" style="height:50px;"></td>' +
+                //        '<td style="border:0">' +
+                //        '<p>Attribute: ' + rowData.attr1 + '</p>' +
+                //        '<p>Status: ' + rowData.status + '</p>' +
+                //        '</td>' +
+                //        '</tr></table>';
+                return '<div id="ddv-' + rowIndex + '" style="padding:5px 0"> 试试</div>';
+            },
+            @*onExpandRow: function(index, row) {
+                var ddv = $(this).datagrid('getRowDetail', index).find('div.ddv');
+                ddv.panel({
+                    border: false,
+                    cache: true,
+                    href: '@Url.Action("Inittable", "WorkTimes")',    
+                    onLoad:function(){    
+                        $('#tt').datagrid('fixDetailRowHeight',index);    
+                        $('#tt').datagrid('selectRow',index);    
+                        $('#tt').datagrid('getRowDetail',index).find('form').form('load',row);    
+                    }    
+                });    
+                $('#tt').datagrid('fixDetailRowHeight',index);    
+
+
+            },
+            onDblClickRow: function (index, row) {
+                $('#tt').datagrid('expandRow', index);
+                
+            }*@
 
 
         });

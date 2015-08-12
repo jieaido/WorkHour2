@@ -165,6 +165,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\EasyUI\datagrid-detailviews.js" />
     <Content Include="Scripts\DateTimerPicker\css\bootstrap-datetimepicker.css" />
     <Content Include="Scripts\DateTimerPicker\css\bootstrap-datetimepicker.min.css" />
     <Content Include="Scripts\DateTimerPicker\js\bootstrap-datetimepicker.js" />

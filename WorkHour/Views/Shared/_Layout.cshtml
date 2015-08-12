@@ -7,6 +7,7 @@
     <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+  
     
 </head>
 <body>
@@ -62,6 +63,9 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/EasyUI/datagrid-detailviews.js"></script>
+    <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
+    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
