@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -138,27 +139,32 @@ namespace WorkHour.Controllers
 
             //todo 回来再查
 
-            var s = db.Set<WorkTime>().
+                    var s = db.WorkTimes.
                             Where(x => x.WorkTimeID > 0).
                             Take(rows).
                             OrderBy(x => x.WorkTimeID).
                             Skip((page - 1) * rows).ToList();
             //  .AsQueryable()不行,tolist行
             //.AsQueryable()会报1:wt.StartTime.ToShortDateString() 不能在linq中使用.2:orderby要在skip前面
-           
+            //Expression<Func<WorkTime, bool>>labma = x => x.WorkTimeID > 0;
+            //如果是用expression 查询的就是iqueryable,
+            //用func查询就是ienumerable
+            //db.WorkTimes.Where(labma
+            //    ).Take(10
+            //    ).Skip(
+            //        2);
             
             var count = db.WorkTimes.ToList().Count;
 
 
             var result = new
             {
-                count,
+                total=count,
                 rows = (from wt in s
                         select
                         new {
                           wt.Station.StationName,
-                          ToShortDateString = wt.StartTime.ToShortDateString() ,
-                         wt.EndTime,
+                          starttime = wt.StartTime.ToLongDateString() , endtime = wt.EndTime.ToString("yyyy-M-d dddd hh:mm:ss t") ,
                           wt.WorkProgram,
                           wt.Member.MemberName,
                           wt.WorkTimeValue,
