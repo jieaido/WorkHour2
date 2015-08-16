@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+        <div class="container ">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -30,7 +30,7 @@
                     <li>@Html.ActionLink("站点", "Index", "Stations")</li>
                     <li>@Html.ActionLink("成员", "Index", "Members")</li>
                     <li>@Html.ActionLink("设置", "Index", "test")</li>
-                    <li>@Html.ActionLink("工时", "Index", "WorkTimes")</li>
+                    <li>@Html.ActionLink("工时", "table", "WorkTimes")</li>
                     <li>
                         <nav>
                            
@@ -65,7 +65,10 @@
     <script src="~/Scripts/EasyUI/jquery.easyui.min.js"></script>
     <script src="~/Scripts/EasyUI/datagrid-detailviews.js"></script>
     <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
-    <script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+<script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+
+    <!--todo   看见没,ajax必须加入下面的js的文件,不要问我怎么知道的,草-->
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

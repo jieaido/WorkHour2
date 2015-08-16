@@ -2,10 +2,19 @@
 
 @{
     ViewBag.Title = "Edit";
+    Layout = null;
 }
 
 <h2>Edit</h2>
+<script type="text/javascript">
+    function ondel(){
+        $.post("@Url.Action("Delete", "WorkTimes")", { id: @Model.WorkTimeID })
+        init();
+    }
+</script>
+<button type="button" style="width:200px" class="btn btn-success ">保存</button>
 
+<button class="btn btn-danger " onclick="ondel()" style="width:200px" type="button">删除</button>
 
 @using (Html.BeginForm())
 {

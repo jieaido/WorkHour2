@@ -14,20 +14,30 @@
         init();
 
     });
+    
 
+    function onsuccess(parameters) {
+        alert(parameters);
+        init();
+    };
     function init() {
         $("#tt").datagrid({
             pagination: 'true',
             rownumbers: 'true',
             url: '@Url.Action("Inittable", "WorkTimes")',
             title: '这是一个测试的数据表',
-            pageNumber: 1,
-            pageSize: 10,
+            pageNumber: 1, 
             pagePosition: 'top',
             singleSelect: true,
             width: 1280,
             columns: [
                 [
+                {
+                    field: "WorkTimeID",
+                    title: "id",
+                    hidden:true
+                    
+                },
                     {
                         field: 'StationName',
                         width: 300,
@@ -51,21 +61,21 @@
                     {
                         field: 'WorkProgram',
                         title: '工作内容',
-                        width: 300,
+                        width: 300
 
                     },
                     {
                         field: 'MemberName',
                         title: '成员',
-                        width: 300,
+                        width: 300
 
                     },
                     {
                         field: 'WorkTimeValue',
                         title: '工时',
-                        width: 300,
+                        width: 300
 
-                    },
+                    }
                 ]
             ],
             view: detailview,
@@ -82,12 +92,10 @@
            onExpandRow: function(index, row) {
                 var ddv = $(this).datagrid('getRowDetail', index).find('div.ddv');
                 ddv.panel({
-                    
                     border: true,
-                    cache: false,
                     width: 800,
                     height: 400,
-                    href:'@Url.Action("Create","WorkTimes")',
+                    href: '@Url.Action("edit","WorkTimes")' + "/" + row.WorkTimeID,
                     onLoad:function(){    
                         $('#tt').datagrid('fixDetailRowHeight',index);    
                        // $('#tt').datagrid('selectRow',index);    
@@ -106,7 +114,8 @@
 
         });
     }
-    
+
+   
 
 </script>
 <h2>table</h2>

@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace Model
 {
     using System;
@@ -9,7 +11,7 @@ namespace Model
 
     public  class WorkTime
     {
-        
+        [DisplayName("工时编号")]
         public int WorkTimeID { get; set; }
         //成员id
         public int MemberID { get; set; }

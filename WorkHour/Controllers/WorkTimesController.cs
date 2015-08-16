@@ -58,26 +58,33 @@ namespace WorkHour.Controllers
         //        db.SaveChanges();
         //        return RedirectToAction("Index");
         //    }
+        [HttpPost]
+        public ActionResult Create(WorkTime workTime)
+        {
+            //todo 逻辑没有做啊
+
+            return Content("ok");
+        }
 
         //    ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName", workTime.StationID);
         //    return View(workTime);
         //}
 
         //// GET: WorkTimes/Edit/5
-        //public ActionResult Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    WorkTime workTime = db.WorkTimes.Find(id);
-        //    if (workTime == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-        //    ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName", workTime.StationID);
-        //    return View(workTime);
-        //}
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            WorkTime workTime = db.WorkTimes.Find(id);
+            if (workTime == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName", workTime.StationID);
+            return View(workTime);
+        }
 
         //// POST: WorkTimes/Edit/5
         //// 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
@@ -112,15 +119,17 @@ namespace WorkHour.Controllers
         //}
 
         //// POST: WorkTimes/Delete/5
-        //[HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("Delete")]
         //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(int id)
-        //{
-        //    WorkTime workTime = db.WorkTimes.Find(id);
-        //    db.WorkTimes.Remove(workTime);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
+        public ActionResult DeleteConfirmed(int id)
+        {
+            //todo    [ValidateAntiForgeryToken]这个东西会报错,回来查一下
+
+            WorkTime workTime = db.WorkTimes.Find(id);
+            db.WorkTimes.Remove(workTime);
+            db.SaveChanges();
+            return RedirectToAction("table");
+        }
 
         public ActionResult InitTable(int rows,int page)
         {
@@ -163,6 +172,7 @@ namespace WorkHour.Controllers
                 rows = (from wt in s
                         select
                         new {
+                            wt.WorkTimeID,
                           wt.Station.StationName,
                           starttime = wt.StartTime.ToLongDateString() , endtime = wt.EndTime.ToString("yyyy-M-d dddd hh:mm:ss t") ,
                           wt.WorkProgram,
