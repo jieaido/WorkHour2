@@ -11,10 +11,14 @@ namespace Model
 
     public  class WorkTime
     {
+        public WorkTime()
+        {
+            Members=new HashSet<Member>();
+        }
         [DisplayName("工时编号")]
         public int WorkTimeID { get; set; }
         //成员id
-        public int MemberID { get; set; }
+   
         //干活的站点
         public int StationID { get; set; }
         //开始时间
@@ -31,13 +35,13 @@ namespace Model
         //登记时间
         public DateTime? SubTime { get; set; }
         //登记人id
-        public int? SubMemberID { get; set; }
+       
         //删除标记
         public byte isDel { get; set; }
 
-        public virtual Member Member { get; set; }
+        public virtual ICollection<Member> Members { get; set; }
 
-        public virtual Member SubMember { get; set; }
+       
 
         public virtual Station Station { get; set; }
     }

@@ -12,7 +12,7 @@ namespace Model
         public Member()
         {
             WorkTimes = new HashSet<WorkTime>();
-            ManagerWorkTimes = new HashSet<WorkTime>();
+           
         }
 
         public int MemberID { get; set; }
@@ -28,6 +28,6 @@ namespace Model
 
         public virtual ICollection<WorkTime> WorkTimes { get; set; }
 
-        public virtual ICollection<WorkTime> ManagerWorkTimes { get; set; }
+      
     }
 }

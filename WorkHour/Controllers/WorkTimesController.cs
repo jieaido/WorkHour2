@@ -89,19 +89,19 @@ namespace WorkHour.Controllers
         //// POST: WorkTimes/Edit/5
         //// 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
         //// 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "WorkTimeID,MemberID,StationID,StartTime,EndTime,WorkProgram,Remarks,WorkTimeValue,SubTime,SubMemberID,isDel")] WorkTime workTime)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(workTime).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName", workTime.StationID);
-        //    return View(workTime);
-        //}
+        [HttpPost]
+ 
+        public ActionResult Edit([Bind(Include = "WorkTimeID,MemberID,StationID,StartTime,EndTime,WorkProgram,Remarks,WorkTimeValue")] WorkTime workTime)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(workTime).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("table");
+            }
+            ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName", workTime.StationID);
+            return View(workTime);
+        }
 
         //// GET: WorkTimes/Delete/5
         //public ActionResult Delete(int? id)
@@ -176,7 +176,7 @@ namespace WorkHour.Controllers
                           wt.Station.StationName,
                           starttime = wt.StartTime.ToLongDateString() , endtime = wt.EndTime.ToString("yyyy-M-d dddd hh:mm:ss t") ,
                           wt.WorkProgram,
-                          wt.Member.MemberName,
+                          //wt.Member.MemberName,
                           wt.WorkTimeValue,
                       }).ToList()
              }
