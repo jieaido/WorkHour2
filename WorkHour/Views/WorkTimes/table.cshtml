@@ -8,11 +8,12 @@
     ViewBag.Title = "table";
 }
 
-<script src="~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"></script>
+    
+
 <script type="text/javascript">
     $(function() {
         init();
-
+    
     });
     
 
@@ -30,14 +31,37 @@
             pagePosition: 'top',
             singleSelect: true,
             width: 1280,
-            columns: [
-                [
+            toolbar:[
                 {
-                    field: "WorkTimeID",
-                    title: "id",
-                    hidden:true
+                    iconCls: 'icon-edit',
+                    handler: function() {
+                        $("#dia").dialog({
+                            title: 'My Dialog',
+                            top:100,
+                            width: 700,
+                            height: 600,
+                            closed: false,
+                            cache: false,
+                            href: '@Url.Action("Create","WorkTimes")',
+                            modal: true
+                        });
+                    }
+
                     
                 },
+                {
+                    iconCls: 'icon-add',
+                    handler: function () { alert('编辑按钮') }
+                },
+            ],
+            columns: [
+                [
+                    {
+                        field: "WorkTimeID",
+                        title: "id",
+                        hidden:true
+                    
+                    },
                     {
                         field: 'StationName',
                         width: 300,
@@ -89,7 +113,7 @@
                 //        '</tr></table>';
                 return '<div class="ddv" ></div>';
             },
-           onExpandRow: function(index, row) {
+            onExpandRow: function(index, row) {
                 var ddv = $(this).datagrid('getRowDetail', index).find('div.ddv');
                 ddv.panel({
                     border: true,
@@ -98,7 +122,7 @@
                     href: '@Url.Action("edit","WorkTimes")' + "/" + row.WorkTimeID,
                     onLoad:function(){    
                         $('#tt').datagrid('fixDetailRowHeight',index);    
-                       // $('#tt').datagrid('selectRow',index);    
+                        // $('#tt').datagrid('selectRow',index);    
                         //$('#tt').datagrid('getRowDetail',index).find('form').form('load',row);    
                     }    
                 });    
@@ -118,12 +142,18 @@
    
 
 </script>
-<h2>table</h2>
+<h2>工时表格</h2>
 
+<button type="button" style="width:200px"  class="btn btn-success ">保存</button>
 
+<button class="btn btn-danger "  style="width:200px" type="button">删除</button>
 <div id="tt">
-    
+
 </div>
+<div id="dia">
+
+</div>
+
 <script src="~/Scripts/DateTimerPicker/js/bootstrap-datetimepicker.min.js"></script>
 <link href="~/Scripts/DateTimerPicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
