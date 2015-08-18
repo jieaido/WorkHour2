@@ -4,11 +4,11 @@
   多选框的js要放到前面.草    *@
 
 
-@Styles.Render("~/Content/css")
-@Scripts.Render("~/bundles/modernizr")
-@Scripts.Render("~/bundles/jquery")
+@*@Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+        
+*@
 @Scripts.Render("~/bundles/bootstrap")
-
 
 @*@Scripts.Render("~/bundles/jqueryval")
 @Scripts.Render("~/bundles/bootstrap")
@@ -26,21 +26,24 @@
     
     $(function () {
       
-        
+       
+                    $('#example-getting-started').multiselect({
+                            
+                        onDropdownShow: function (event) {
+                            //alert('Dropdown shown.');
+                        }
+                        }
+                        );
+                    
+             
 
-        $('#datetimepicker').datetimepicker(
+      
+        $('#datetimepicker2').datetimepicker(
         {
             format: 'yyyy-mm-dd hh:ii',
             autoclose: true,
-            minuteStep: 15
-
+            minuteStep:15
         });
-        $('#datetimepicker2').datetimepicker(
-      {
-          format: 'yyyy-mm-dd hh:ii',
-          autoclose: true,
-          minuteStep:15
-      });
     });
        
    
@@ -55,7 +58,7 @@
     OnSuccess = "onsuccess"
 }))
 {
-    @Html.AntiForgeryToken()
+    @*@Html.AntiForgeryToken()*@
 
     <div class="form-horizontal ">
 
@@ -88,27 +91,34 @@
         <div class="form-group ">
             @Html.Label("参与成员", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <script>
-                    $('#example-getting-started').multiselect();
-                </script>
+                
                 @* todo select 要加上name 才能post参数.哈哈哈 *@
                 <select name="haha" id="example-getting-started" multiple="multiple">
-                    <option name="memid" value="cheese">Cheese</option>
-                    <option name="memid" value="tomatoes">Tomatoes</option>
-                    <option name="memid" value="mozarella">Mozzarella</option>
-                    <option name="memid" value="mushrooms">Mushrooms</option>
-                    <option name="memid" value="pepperoni">Pepperoni</option>
-                    <option name="memid" value="onions">Onions</option>
+                    <option  value="cheese">Cheese</option>
+                    <option  value="tomatoes">Tomatoes</option>
+                    <option  value="mozarella">Mozzarella</option>
+                    <option  value="mushrooms">Mushrooms</option>
+                    <option  value="pepperoni">Pepperoni</option>
+                    <option  value="onions">Onions</option>
                 </select>
-                @Html.ValidationMessageFor(model => model.StationID, "", new { @class = "text-danger" })
+                
             </div>
 
         </div>
         <div class="form-group col-md-6">
             @Html.Label("开始时间", htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
+                <script>
+                    $('#datetimepicker').datetimepicker(
+      {
+          format: 'yyyy-mm-dd hh:ii',
+          autoclose: true,
+          minuteStep: 15
+
+      });
+                </script>
                 <input type="text" id="datetimepicker" class="form-control">
-                @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.StartTime, "", new {@class = "text-danger"})
 
             </div>
         </div>

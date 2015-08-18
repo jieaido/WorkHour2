@@ -6,8 +6,6 @@
     ViewBag.Title = "table";
 }
 
-    
-
 <script type="text/javascript">
     $(function() {
         init();
@@ -19,6 +17,7 @@
         alert(parameters);
         init();
     };
+
     function init() {
         $("#tt").datagrid({
             pagination: 'true',
@@ -36,15 +35,23 @@
 
                         /* 下面是新建窗口的函数*/
                         
-                        $("#dia").dialog({
+                        $("#dia").window({
                             title: 'My Dialog',
                                 top:100,
                             width: 800,
                             height: 600,
-                            closed: false,
-                            cache: false,
+                           
+                         
                             href: '@Url.Action("Create","WorkTimes")',
-                            modal: true
+                            modal: true,
+                            onDestroy: function () {
+                               
+                                alert("销毁了");
+                            },
+                            onClose: function () {
+                                //$("#dia").dialog("destroy");
+                                alert("关闭了");
+                            }
                         });
                     }
 
@@ -139,8 +146,6 @@
 
         });
     }
-
-   
 
 </script>
 <h2>工时表格</h2>
