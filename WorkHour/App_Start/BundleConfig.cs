@@ -9,7 +9,10 @@ namespace WorkHour
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                      "~/Scripts/EasyUI/jquery.easyui.min.js",
+                     "~/Scripts/EasyUI/datagrid-detailviews.js",
+                     "~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -21,11 +24,24 @@ namespace WorkHour
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Scripts/respond.js",
+                        "~/Scripts/bootstrap-multiselect.js",
+                     "~/Scripts/DateTimerPicker/js/bootstrap-datetimepicker.min.js",
+                        "~/Scripts/jquery.unobtrusive-ajax.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/bootstrap-multiselect.css",
+                     "~/Scripts/DateTimerPicker/css/bootstrap-datetimepicker.css",
+                        "~/Scripts/EasyUI/themes/icon.css",
+                      "~/Scripts/EasyUI/themes/bootstrap/easyui.css"
+
+
+                      ));
+
+         
+          
         }
     }
 }

@@ -1,9 +1,7 @@
-﻿
-
+﻿@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")
-
-
 @{
     ViewBag.Title = "table";
 }
@@ -34,11 +32,14 @@
             toolbar:[
                 {
                     iconCls: 'icon-edit',
-                    handler: function() {
+                    handler: function () {
+
+                        /* 下面是新建窗口的函数*/
+                        
                         $("#dia").dialog({
                             title: 'My Dialog',
-                            top:100,
-                            width: 700,
+                                top:100,
+                            width: 800,
                             height: 600,
                             closed: false,
                             cache: false,
@@ -154,7 +155,7 @@
 
 </div>
 
-<script src="~/Scripts/DateTimerPicker/js/bootstrap-datetimepicker.min.js"></script>
+@*<script src="~/Scripts/DateTimerPicker/js/bootstrap-datetimepicker.min.js"></script>
 <link href="~/Scripts/DateTimerPicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
 <link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
-<link href="~/Scripts/EasyUI/themes/bootstrap/easyui.css" rel="stylesheet" />
+<link href="~/Scripts/EasyUI/themes/bootstrap/easyui.css" rel="stylesheet" />*@
