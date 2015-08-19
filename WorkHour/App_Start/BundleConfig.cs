@@ -27,15 +27,17 @@ namespace WorkHour
                       "~/Scripts/respond.js",
                         "~/Scripts/bootstrap-multiselect.js",
                      "~/Scripts/DateTimerPicker/js/bootstrap-datetimepicker.min.js",
-                        "~/Scripts/jquery.unobtrusive-ajax.js"));
+                        //"~/Scripts/jquery.unobtrusive-ajax.js",
+                       "~/Scripts/sumoselect/jquery.sumoselect.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/bootstrap-multiselect.css",
-                     "~/Scripts/DateTimerPicker/css/bootstrap-datetimepicker.css",
-                        "~/Scripts/EasyUI/themes/icon.css",
-                      "~/Scripts/EasyUI/themes/bootstrap/easyui.css"
+                        "~/Scripts/DateTimerPicker/css/bootstrap-datetimepicker.css",
+                      "~/Scripts/EasyUI/themes/icon.css",
+                      "~/Scripts/EasyUI/themes/bootstrap/easyui.css",
+                      "~/Scripts/sumoselect/sumoselect.css"
 
 
                       ));
