@@ -1,5 +1,5 @@
-﻿@using System.Security.Principal
-@model Model.WorkTime
+﻿@using Model
+@model WorkTime
 @* todo 草泥马,放哪都不中,就这行,多选框真几把傻逼.草
   多选框的js要放到前面.草    *@
 
@@ -22,36 +22,31 @@
 }
 
 <script type="text/javascript">
-    
-    $(function () {
-      
-       
+
+    $(function() {
+
+
         $('#example-getting-started').multiselect({
-                            
-                onDropdownShow: function (event) {
+                onDropdownShow: function(event) {
                     //alert('Dropdown shown.');
                 }
             }
         );
-                    
-             
 
-      
+
         $('#datetimepicker2').datetimepicker(
         {
             format: 'yyyy-mm-dd hh:ii',
             autoclose: true,
-            minuteStep:15
+            minuteStep: 15
         });
     });
-       
-   
+
+
 </script>
 
-	
 
-
-@using (Ajax.BeginForm("Create",new AjaxOptions()
+@using (Ajax.BeginForm("Create", new AjaxOptions
 {
     HttpMethod = "post",
     OnSuccess = "onsuccess"
@@ -62,31 +57,21 @@
     <div class="form-horizontal ">
 
 
-        <button type="button" style="width:200px" class="btn btn-success ">保存</button>
+        <button type="button" style="width: 200px" class="btn btn-success ">保存</button>
 
-        <button type="button" style="width:200px" class="btn btn-danger " onclick="ondel()">删除</button>
+        <button type="button" style="width: 200px" class="btn btn-danger " onclick="ondel()">删除</button>
 
         <h4>WorkTime</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @*<div class="form-group col-md-6">
-                @Html.LabelFor(model => model.MemberID, htmlAttributes: new {@class = "control-label col-md-2"})
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.MemberID, new {htmlAttributes = new {@class = "form-control"}})
-                    @Html.ValidationMessageFor(model => model.MemberID, "", new {@class = "text-danger"})
-                </div>
-
-            </div>*@
-
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+       
         <div class="form-group ">
-            @Html.LabelFor(model => model.StationID, "StationID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.StationID, "StationID", new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.DropDownList("StationID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.StationID, "", new { @class = "text-danger" })
+                @Html.DropDownList("StationID", null, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.StationID, "", new {@class = "text-danger"})
             </div>
-
         </div>
-
         @*<div class="form-group ">
             @Html.Label("参与成员", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -100,12 +85,10 @@
                     <option  value="pepperoni">Pepperoni</option>
                     <option  value="onions">Onions</option>
                 </select>
-                
             </div>
-
         </div>*@
         <div class="form-group col-md-6">
-            @Html.Label("开始时间", htmlAttributes: new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.StartTime, new {@class = "control-label col-md-4"})
             <div class="col-md-8">
                 <script>
                     $('#datetimepicker').datetimepicker(
@@ -113,7 +96,6 @@
                         format: 'yyyy-mm-dd hh:ii',
                         autoclose: true,
                         minuteStep: 15
-
                     });
                 </script>
                 <input type="text" id="datetimepicker" class="form-control">
@@ -123,60 +105,49 @@
         </div>
 
         <div class="form-group col-md-6">
-            @Html.Label("结束时间", htmlAttributes: new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.EndTime, new {@class = "control-label col-md-4"})
             <div class="col-md-8">
                 <input type="text" id="datetimepicker2" class="form-control">
-                @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.StartTime, "", new {@class = "text-danger"})
 
             </div>
         </div>
 
 
-
-
-
         <div class="form-group">
-        @Html.LabelFor(model => model.WorkProgram, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.WorkProgram, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.WorkProgram, "", new { @class = "text-danger" })
-        </div>
-    </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WorkProgram, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                <div class="textarea">
+                    @Html.TextAreaFor(model => model.WorkProgram, new {@class = "form-control", style = "height:50px"})
+                </div>
+                @Html.ValidationMessageFor(model => model.WorkProgram, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Remarks, new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Remarks, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Remarks, "", new {@class = "text-danger"})
             </div>
         </div>
         <div class="form-group">
             <script>
                 $('.testselect6').SumoSelect();
             </script>
-            @Html.Label("参与成员", htmlAttributes: new { @class = "control-label col-md-2" })
+           @Html.LabelFor(model=>model.Members, new {@class ="control-label col-md-2"})
             <div class="col-md-10">
-                <select  multiple="multiple" name="somename3" class="testselect6">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option disabled="disabled" value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
-                    <option value="bmw">BMW</option>
-                    <option disabled="disabled" value="porsche">Porche</option>
-                    <option selected="selected" value="ferrari">Ferrari</option>
-                    <option selected="selected" value="hyundai">Hyundai</option>
-                    <option value="mitsubishi">Mitsubishi</option>
-                    <option value="moreoptions">More options</option>
-                    <option value="last option">this is a last option</option>
+                <select multiple="multiple" name="Members" class="testselect6">
+                    @foreach (var m in ViewBag.members as List<Member>)
+                    {
+                        <option value="@m.MemberID">@m.MemberName</option>
+                    }
+
+
                 </select>
-                </div>
+            </div>
         </div>
-        
-        
 
 
-
-
-        
         @*<div class="form-group" style="width: 120px">
             @Html.LabelFor(model => model.EndTime, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
@@ -222,7 +193,7 @@
         </div>*@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit"  value="Create" class="btn btn-primary"/>
+                <input type="submit" value="Create" class="btn btn-primary"/>
             </div>
         </div>
     </div>
@@ -234,4 +205,3 @@
 
 
 }*@
-

@@ -42,6 +42,8 @@ namespace WorkHour.Controllers
         public ActionResult Create()
         {
             ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName");
+            //todo member 要增加判断逻辑,只显示当前用户的member
+            ViewBag.members = db.Members.ToList();
             return View();
         }
 
