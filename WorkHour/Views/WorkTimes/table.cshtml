@@ -2,7 +2,7 @@
 @Scripts.Render("~/bundles/modernizr")
 @Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/bundles/bootstrap")*@
-<!--todo ajax的js不能重复添加,重复会提交两次post -->>
+<!--todo ajax的js不能重复添加,重复会提交两次post -->
 <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 @{
     ViewBag.Title = "table";
@@ -20,7 +20,7 @@
         //init();
         $("#dia").window("close");
     };
-
+    
     function init() {
         $("#tt").datagrid({
             pagination: 'true',
@@ -149,6 +149,7 @@
 
 
         });
+    
     }
 
 </script>
@@ -163,8 +164,3 @@
 <div id="dia">
 
 </div>
-
-@*<script src="~/Scripts/DateTimerPicker/js/bootstrap-datetimepicker.min.js"></script>
-<link href="~/Scripts/DateTimerPicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
-<link href="~/Scripts/EasyUI/themes/icon.css" rel="stylesheet" />
-<link href="~/Scripts/EasyUI/themes/bootstrap/easyui.css" rel="stylesheet" />*@
