@@ -20,6 +20,7 @@ namespace Model
         //成员id
    
         //干活的站点
+        //todo 虽然不知道为什么,这种导航属性会直接绑定在模型上,比如stationid赋值后,station也就有了
         public int StationID { get; set; }
         //开始时间
         public DateTime StartTime { get; set; }

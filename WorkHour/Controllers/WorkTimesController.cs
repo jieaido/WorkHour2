@@ -61,13 +61,17 @@ namespace WorkHour.Controllers
         //        return RedirectToAction("Index");
         //    }
         [HttpPost]
-        public ActionResult Create([Bind(Exclude ="SubTime,isDel,Members")]WorkTime workTime)
+        public ActionResult Create([Bind(Exclude ="SubTime,isDel,Members")]WorkTime workTime,int[] members)
         {
             //todo 逻辑没有做啊
-            var wt = workTime;
-            TryUpdateModel(wt);
-            var s = wt.EndTime;
-            return Content("ok");
+            //todo 丢着stationid看看直接添加station会不会出来
+            foreach (var memid in members)
+            {
+                workTime.Members.Add(db.Members.Find(memid));
+            }
+            db.WorkTimes.Add(workTime);
+            db.SaveChanges();
+            return RedirectToAction("table");
         }
 
         //    ViewBag.StationID = new SelectList(db.Stations, "StationID", "StationName", workTime.StationID);

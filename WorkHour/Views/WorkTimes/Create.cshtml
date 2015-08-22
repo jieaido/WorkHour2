@@ -99,7 +99,7 @@
                         minuteStep: 15
                     });
                 </script>
-                <input type="text" id="datetimepicker" class="form-control">
+                <input type="text" id="datetimepicker" name="Starttime" class="form-control">
                 @Html.ValidationMessageFor(model => model.StartTime, "", new {@class = "text-danger"})
 
             </div>
@@ -108,7 +108,7 @@
         <div class="form-group col-md-6">
             @Html.LabelFor(model => model.EndTime, new {@class = "control-label col-md-4"})
             <div class="col-md-8">
-                <input type="text" id="datetimepicker2" class="form-control">
+                <input type="text" id="datetimepicker2" name="endtime" class="form-control">
                 @Html.ValidationMessageFor(model => model.StartTime, "", new {@class = "text-danger"})
 
             </div>
