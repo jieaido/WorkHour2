@@ -15,6 +15,7 @@ namespace WorkHour.DAL
         {
             db = _db;
         }
+
         public Member ValiValidationAccount(Member member)
         {
             //todo
@@ -32,15 +33,28 @@ namespace WorkHour.DAL
         {
             //todo
             //增加注册逻辑
-            var s=db.Whdb.Members.Add(member);
-            if (db.Whdb.SaveChanges()>0)
+            var s = db.Whdb.Members.Add(member);
+            if (db.Whdb.SaveChanges() > 0)
             {
                 return s;
             }
             return null;
 
+
+
+
+
         }
 
-        
+        public List<Member> GetMembers(int[] ids)
+        {
+            List<Member> members = new List<Member>();
+            foreach (var id in ids)
+            {
+                members.Add(db.Whdb.Members.Find(id));
+            }
+            return members;
+            return null;
+        }
     }
 }

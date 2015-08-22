@@ -7,6 +7,7 @@ using WorkHour.DAL;
 
 namespace WorkHour.Models
 {
+    // ReSharper disable once InconsistentNaming
     public class WHDBcontent:IDisposable
     {
         public WHDBcontent ()
@@ -15,7 +16,7 @@ namespace WorkHour.Models
             AccountDal=new AccountDal(this);
             MemberDal=new MemberDal(this);
         }
-        public WHDB Whdb { get; private set; }
+        public WHDB Whdb { get; }
         public AccountDal AccountDal { get; private set; }
         public MemberDal MemberDal { get; private set; }
         public void Dispose()
