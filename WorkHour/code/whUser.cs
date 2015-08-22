@@ -7,6 +7,7 @@ using Model;
 
 namespace WorkHour.code
 {
+    ///登陆用户类
     public class WhUser
     {
         private  static WhUser _whUser;

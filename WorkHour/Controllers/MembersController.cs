@@ -58,8 +58,17 @@ namespace WorkHour.Controllers
         // GET: Members/Create
         public ActionResult Create()
         {
-            int id = WhUser.Getcurrentuser().TeamId;
-            ViewBag.TeamID = new SelectList(_db.Teams.Where(x=>x.TeamID==id), "TeamID", "TeamName");
+           
+            if (WhUser.Getcurrentuser()!=null)
+            {
+                int id = WhUser.Getcurrentuser().TeamId;
+                ViewBag.TeamID = new SelectList(_db.Teams, "TeamID", "TeamName");
+            }
+            else
+            {
+                ViewBag.TeamID = new SelectList(_db.Teams, "TeamID", "TeamName");
+
+            }
             return View();
         }
 

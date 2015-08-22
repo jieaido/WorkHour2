@@ -61,10 +61,12 @@ namespace WorkHour.Controllers
         //        return RedirectToAction("Index");
         //    }
         [HttpPost]
-        public ActionResult Create(WorkTime workTime)
+        public ActionResult Create([Bind(Exclude ="SubTime,isDel,Members")]WorkTime workTime)
         {
             //todo 逻辑没有做啊
-
+            var wt = workTime;
+            TryUpdateModel(wt);
+            var s = wt.EndTime;
             return Content("ok");
         }
 
