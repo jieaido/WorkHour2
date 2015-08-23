@@ -9,16 +9,16 @@ namespace Model
     using System.Data.Entity.Spatial;
 
 
-    public  class WorkTime
+    public class WorkTime
     {
         public WorkTime()
         {
-            Members=new HashSet<Member>();
+            Members = new HashSet<Member>();
         }
         [DisplayName("工时编号")]
         public int WorkTimeID { get; set; }
         //成员id
-   
+
         //干活的站点
         //todo 虽然不知道为什么,这种导航属性会直接绑定在模型上,比如stationid赋值后,station也就有了
         public int StationID { get; set; }
@@ -36,13 +36,13 @@ namespace Model
         //登记时间
         public DateTime? SubTime { get; set; }
         //登记人id
-       
+
         //删除标记
         public byte isDel { get; set; }
 
         public virtual ICollection<Member> Members { get; set; }
 
-       
+
 
         public virtual Station Station { get; set; }
     }

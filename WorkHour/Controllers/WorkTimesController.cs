@@ -63,6 +63,7 @@ namespace WorkHour.Controllers
         [HttpPost]
         public ActionResult Create([Bind(Exclude ="SubTime,isDel,Members")]WorkTime workTime,int[] members)
         {
+            var vaild = ModelState.IsValid;
             //todo 逻辑没有做啊
             //todo 丢着stationid看看直接添加station会不会出来
             foreach (var memid in members)

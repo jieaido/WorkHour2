@@ -1,3 +1,5 @@
+using System.ComponentModel;
+
 namespace Model
 {
     using System;
@@ -18,6 +20,7 @@ namespace Model
         public int StationID { get; set; }
 
         [StringLength(50)]
+        [DisplayName("²»ÄÜ")]
         public string StationName { get; set; }
 
         public int TeamID { get; set; }
