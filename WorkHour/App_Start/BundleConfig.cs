@@ -27,8 +27,9 @@ namespace WorkHour
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js",
                         "~/Scripts/bootstrap-multiselect.js",
-                     "~/Scripts/DateTimerPicker/js/bootstrap-datetimepicker.min.js",
-                     "~/Scripts/DateTimerPicker/js/locales/bootstrap-datetimepicker.zh-CN.js",
+                        
+                     "~/Scripts/DateTimerPicker/js/bootstrap-datetimepicker.js",
+                     "~/Scripts/DateTimerPicker/js/locales/bdzhcn.js",
                         //"~/Scripts/jquery.unobtrusive-ajax.js",
                        "~/Scripts/sumoselect/jquery.sumoselect.js"));
 
