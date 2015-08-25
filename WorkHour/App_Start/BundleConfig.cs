@@ -12,7 +12,8 @@ namespace WorkHour
                         "~/Scripts/jquery-{version}.js",
                       "~/Scripts/EasyUI/jquery.easyui.min.js",
                      "~/Scripts/EasyUI/datagrid-detailviews.js",
-                     "~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"));
+                     "~/Scripts/EasyUI/locale/easyui-lang-zh_CN.js"
+                     ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -27,6 +28,7 @@ namespace WorkHour
                       "~/Scripts/respond.js",
                         "~/Scripts/bootstrap-multiselect.js",
                      "~/Scripts/DateTimerPicker/js/bootstrap-datetimepicker.min.js",
+                     "~/Scripts/DateTimerPicker/js/locales/bootstrap-datetimepicker.zh-CN.js",
                         //"~/Scripts/jquery.unobtrusive-ajax.js",
                        "~/Scripts/sumoselect/jquery.sumoselect.js"));
 
